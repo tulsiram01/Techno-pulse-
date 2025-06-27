@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPulse | Future of CPU Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --error: #ef4444;
+            --hardware: #f97316;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0f172a;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #93c5fd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Article Styles */
+        .article-header {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #0f172a, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .article-image:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            color: var(--primary);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: 60%;
+            width: 5px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: var(--dark);
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        .article-content ul {
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .article-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .tech-feature {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-feature::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .tech-feature:hover::after {
+            opacity: 1;
+        }
+
+        .tech-feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .conclusion {
+            background-color: #f1f5f9;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 50px 0;
+            border-top: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conclusion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb' opacity='0.1'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translate(30%, -30%);
+            z-index: 0;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .comments-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+
+        .comment-form {
+            margin-bottom: 40px;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .comment-form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+
+        .comment-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comment-form button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .comment-form button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .subscribe-form input {
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .subscribe-form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+        }
+
+        .subscribe-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .subscribe-form button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .subscribe-form button:active {
+            transform: translateY(0);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--success);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: 0;
+                width: 300px;
+                height: calc(100vh - 80px);
+                background: #0f172a;
+                flex-direction: column;
+                padding: 40px 20px;
+                transform: translateX(100%);
+                transition: var(--transition);
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 10px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .article-content h2 {
+                font-size: 1.7rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechPulse</div>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="software.html">Software</a>
+                    <a href="review.html">Reviews</a>
+                    <a href="About.html">About</a>
+                    <a href="news.html">News</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Header -->
+    <div class="article-header">
+        <div class="container">
+            <h1 class="article-title">The Future of CPU Technology: What to Expect in 2025</h1>
+            <div class="article-meta">
+                <span><i class="far fa-user"></i> By TechPulse Editorial Team</span>
+                <span><i class="far fa-calendar"></i> June 12, 2025</span>
+                <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="container">
+        <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Future CPU Technology" class="article-image">
+        
+        <div class="article-content">
+            <h2>Introduction</h2>
+            <p>As we approach 2025, the CPU industry stands on the brink of several groundbreaking advancements that promise to redefine computing performance, efficiency, and capabilities. This article explores the most exciting developments we can expect in processor technology in the coming year.</p>
+            
+            <div class="tech-feature">
+                <h3>1. 3D Stacking and Chiplet Architectures</h3>
+                <h4>What's Coming:</h4>
+                <ul>
+                    <li>Advanced 3D stacking techniques allowing for denser transistor packing</li>
+                    <li>More sophisticated chiplet designs from AMD, Intel, and Apple</li>
+                    <li>Improved interconnects between chiplets (possibly optical)</li>
+                </ul>
+                <h4>Impact:</h4>
+                <ul>
+                    <li>Significant performance boosts (30-50% over current designs)</li>
+                    <li>Better thermal management</li>
+                    <li>More cost-effective manufacturing</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>2. The Rise of AI Accelerators</h3>
+                <h4>Key Developments:</h4>
+                <ul>
+                    <li>Dedicated AI cores becoming standard in consumer CPUs</li>
+                    <li>On-chip neural processing units (NPUs) with teraflop-level performance</li>
+                    <li>Improved machine learning inference at the hardware level</li>
+                </ul>
+                <h4>Applications:</h4>
+                <ul>
+                    <li>Real-time language processing</li>
+                    <li>Advanced image recognition</li>
+                    <li>Personalized computing experiences</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>3. Power Efficiency Breakthroughs</h3>
+                <h4>Innovations:</h4>
+                <ul>
+                    <li>Sub-1nm process nodes from TSMC and Samsung</li>
+                    <li>New transistor designs (CFET, nanosheet)</li>
+                    <li>Advanced power gating techniques</li>
+                </ul>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Laptops with 24+ hour battery life</li>
+                    <li>Cooler running high-performance chips</li>
+                    <li>More sustainable computing</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>4. Quantum Computing Hybridization</h3>
+                <h4>Emerging Tech:</h4>
+                <ul>
+                    <li>Early-stage quantum co-processors</li>
+                    <li>Quantum error correction at the CPU level</li>
+                    <li>Specialized instructions for quantum-classical algorithms</li>
+                </ul>
+                <h4>Potential:</h4>
+                <ul>
+                    <li>Revolutionize cryptography</li>
+                    <li>Accelerate complex simulations</li>
+                    <li>Enable new forms of machine learning</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>5. Memory and Cache Innovations</h3>
+                <h4>Advances:</h4>
+                <ul>
+                    <li>On-package HBM4 memory becoming mainstream</li>
+                    <li>Larger, smarter cache hierarchies</li>
+                    <li>Persistent memory integration</li>
+                </ul>
+                <h4>Performance Gains:</h4>
+                <ul>
+                    <li>Eliminating memory bottlenecks</li>
+                    <li>Near-instant application loading</li>
+                    <li>More efficient multitasking</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>6. Security Enhancements</h3>
+                <h4>New Protections:</h4>
+                <ul>
+                    <li>Hardware-level ransomware protection</li>
+                    <li>Advanced memory encryption</li>
+                    <li>Physical unclonable functions (PUFs) for authentication</li>
+                </ul>
+                <h4>Security Benefits:</h4>
+                <ul>
+                    <li>Protection against emerging threats</li>
+                    <li>More secure financial transactions</li>
+                    <li>Better privacy safeguards</li>
+                </ul>
+            </div>
+            
+            <div class="tech-feature">
+                <h3>7. The Software Revolution</h3>
+                <h4>Programming Changes:</h4>
+                <ul>
+                    <li>Widespread adoption of heterogeneous computing</li>
+                    <li>New programming models for AI acceleration</li>
+                    <li>Automatic parallelization improvements</li>
+                </ul>
+                <h4>Developer Impact:</h4>
+                <ul>
+                    <li>Easier access to advanced hardware features</li>
+                    <li>More efficient code execution</li>
+                    <li>New possibilities for application design</li>
+                </ul>
+            </div>
+            
+            <div class="conclusion">
+                <h2>Conclusion</h2>
+                <p>2025 promises to be a landmark year for CPU technology, with innovations that will touch every aspect of computing. From AI acceleration to quantum hybridization, these advances will enable new applications we can only begin to imagine today. As always, the most successful implementations will be those that balance raw performance with practical usability and energy efficiency.</p>
+                <p style="margin-top: 20px; font-weight: 500;">What do you think about these upcoming CPU technologies? Share your thoughts in the comments below!</p>
+            </div>
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h3>Join the Discussion</h3>
+            <div class="comment-form">
+                <textarea rows="5" placeholder="Share your thoughts about future CPU technology..."></textarea>
+                <button type="submit"><i class="fas fa-comment"></i> Post Comment</button>
+            </div>
+            <!-- Comments would be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="logo-text">TechPulse</div>
+                    </div>
+                    <p style="margin: 20px 0; color: #94a3b8;">Your trusted source for the latest in hardware innovation and software development.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="hardware.html">Hardware</a></li>
+                        <li><a href="software.html">Software</a></li>
+                        <li><a href="review.html">Reviews</a></li>
+                        <li><a href="news.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="Contact Information.html">Contact</a></li>
+                        <li><a href="Privacy Policy.html">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Subscribe</h4>
+                    <p style="color: #94a3b8; margin-bottom: 15px;">Get the latest tech news delivered to your inbox.</p>
+                    <form class="subscribe-form" id="subscribeForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TechPulse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Thank you for subscribing!</span>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Subscribe form functionality
+        const subscribeForm = document.getElementById('subscribeForm');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        
+        subscribeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // In a real app, you would send this to your backend
+            // For this demo, we'll just show a notification
+            notificationText.textContent = "Thank you for subscribing!";
+            notification.classList.add('show');
+            
+            // Reset form
+            this.reset();
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        });
+        
+        // Comment form functionality
+        document.querySelector('.comment-form button').addEventListener('click', function() {
+            const commentText = document.querySelector('.comment-form textarea').value;
+            if (commentText.trim() !== '') {
+                notificationText.textContent = "Comment submitted successfully!";
+                notification.classList.add('show');
+                document.querySelector('.comment-form textarea').value = '';
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            } else {
+                notificationText.textContent = "Please enter a comment before submitting.";
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+        
+        // Add hover effects to tech features
+        const techFeatures = document.querySelectorAll('.tech-feature');
+        techFeatures.forEach(feature => {
+            feature.addEventListener('mouseenter', () => {
+                feature.style.transform = 'translateY(-5px)';
+                feature.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+            });
+            
+            feature.addEventListener('mouseleave', () => {
+                feature.style.transform = '';
+                feature.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>

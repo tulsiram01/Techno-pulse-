@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA RTX 4090 Review - Ultimate Gaming Powerhouse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --nvidia-green: #76b900;
+            --nvidia-dark: #000000;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --chart-red: #ef4444;
+            --chart-blue: #3b82f6;
+            --chart-green: #10b981;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--nvidia-green), #5e9e00);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--nvidia-green), #5e9e00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--nvidia-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--nvidia-green);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--nvidia-green), #5e9e00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #cbd5e1;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            border-top: 3px solid var(--nvidia-green);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--nvidia-green);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        /* Review Content */
+        .review-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--nvidia-green);
+        }
+
+        .review-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .review-content h3 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--nvidia-green);
+        }
+
+        .review-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(118, 185, 0, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(118, 185, 0, 0.2);
+            border-color: var(--nvidia-green);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--nvidia-green);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Performance Section */
+        .performance-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 80px 0;
+            border-top: 1px solid rgba(118, 185, 0, 0.2);
+            border-bottom: 1px solid rgba(118, 185, 0, 0.2);
+        }
+
+        .chart-container {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(118, 185, 0, 0.3);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--nvidia-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benchmark {
+            margin: 25px 0;
+        }
+
+        .benchmark-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .benchmark-label {
+            font-weight: 500;
+        }
+
+        .benchmark-value {
+            color: var(--nvidia-green);
+            font-weight: 600;
+        }
+
+        .progress-container {
+            height: 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(118, 185, 0, 0.3);
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(118, 185, 0, 0.1);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .winner {
+            color: var(--nvidia-green);
+            font-weight: 700;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 50px 0;
+            border-top: 3px solid var(--nvidia-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rating {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .rating-star {
+            color: var(--nvidia-green);
+            font-size: 1.5rem;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .pros, .cons {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .pros {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .cons {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .pros h4, .cons h4 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pros h4 {
+            color: #10b981;
+        }
+
+        .cons h4 {
+            color: #ef4444;
+        }
+
+        .pros ul, .cons ul {
+            padding-left: 25px;
+        }
+
+        .pros li {
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        .cons li {
+            color: #ef4444;
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(118, 185, 0, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--nvidia-green);
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--nvidia-green);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--nvidia-green);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--nvidia-green);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: 0;
+                width: 300px;
+                height: calc(100vh - 80px);
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 40px 20px;
+                transform: translateX(100%);
+                transition: var(--transition);
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 10px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">Techpulse</div>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="software.html">Software</a>
+                    <a href="review.html">Reviews</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact Information.html">Contact</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">NVIDIA GeForce RTX 4090 Review</h1>
+            <p class="hero-subtitle">The new king of gaming graphics cards - performance beyond imagination</p>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">16,384</div>
+                    <div class="stat-label">CUDA Cores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">24 GB</div>
+                    <div class="stat-label">GDDR6X Memory</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2.52 GHz</div>
+                    <div class="stat-label">Boost Clock</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">450W</div>
+                    <div class="stat-label">TDP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Section -->
+    <section class="review-section">
+        <div class="container">
+            <h2 class="section-title">The Ultimate Gaming GPU</h2>
+            <div class="review-content">
+                <p>The NVIDIA GeForce RTX 4090 is not just an incremental upgrade - it's a monumental leap in graphics performance. Built on the revolutionary Ada Lovelace architecture, this GPU redefines what's possible in gaming, content creation, and AI acceleration.</p>
+                
+                <h3>Architecture Revolution</h3>
+                <p>The RTX 4090 features NVIDIA's new Ada Lovelace architecture with 76 billion transistors fabricated on a custom TSMC 4N process. The key innovations include:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="feature-title">3rd Gen RT Cores</h4>
+                        <p>2x faster ray tracing performance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="feature-title">4th Gen Tensor Cores</h4>
+                        <p>Up to 2x AI performance with DLSS 3</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="feature-title">Shader Execution Reordering</h4>
+                        <p>Better utilization of GPU resources</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4 class="feature-title">DLSS 3 Frame Generation</h4>
+                        <p>AI-generated frames for massive FPS gains</p>
+                    </div>
+                </div>
+                
+                <h3>Design & Build Quality</h3>
+                <p>The Founders Edition of the RTX 4090 features a stunning new design with a massive triple-slot cooler. The card measures 304mm long, 137mm wide, and takes up 3 slots in your case. The build quality is exceptional with a metal frame and vapor chamber cooling solution.</p>
+                <p>NVIDIA has implemented a new 12VHPWR power connector that requires a minimum 850W power supply. The card comes with a 4x 8-pin to 12VHPWR adapter in the box.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section class="performance-section">
+        <div class="container">
+            <h2 class="section-title">Performance Benchmarks</h2>
+            <div class="review-content">
+                <h3>Gaming Performance (4K Ultra Settings)</h3>
+                
+                <div class="chart-container">
+                    <h4 class="chart-title"><i class="fas fa-gamepad"></i> Average FPS Comparison</h4>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">Cyberpunk 2077 (RT Overdrive)</div>
+                            <div class="benchmark-value">87 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 100%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">Microsoft Flight Simulator</div>
+                            <div class="benchmark-value">112 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 95%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">Call of Duty: Warzone 2.0</div>
+                            <div class="benchmark-value">215 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 92%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">Forza Horizon 5</div>
+                            <div class="benchmark-value">138 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 89%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Ray Tracing & DLSS Performance</h3>
+                <p>The RTX 4090's real magic happens when you enable ray tracing and DLSS 3. With DLSS 3 Frame Generation, performance can more than double in demanding titles:</p>
+                
+                <div class="chart-container">
+                    <h4 class="chart-title"><i class="fas fa-chart-line"></i> Cyberpunk 2077 (4K RT Overdrive)</h4>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">RTX 3090 Ti (DLSS Quality)</div>
+                            <div class="benchmark-value">24 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 28%; background: var(--chart-blue);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">RTX 4090 (DLSS Quality)</div>
+                            <div class="benchmark-value">52 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 60%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="benchmark">
+                        <div class="benchmark-header">
+                            <div class="benchmark-label">RTX 4090 (DLSS 3 Frame Gen)</div>
+                            <div class="benchmark-value">87 FPS</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 100%; background: var(--nvidia-green);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Generational Comparison</h2>
+            <div class="review-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>RTX 3090 Ti</th>
+                            <th>RTX 4090</th>
+                            <th>Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GPU Architecture</td>
+                            <td>Ampere (GA102)</td>
+                            <td>Ada Lovelace (AD102)</td>
+                            <td>New Generation</td>
+                        </tr>
+                        <tr>
+                            <td>Transistors</td>
+                            <td>28.3 billion</td>
+                            <td class="winner">76.0 billion</td>
+                            <td>169% more</td>
+                        </tr>
+                        <tr>
+                            <td>CUDA Cores</td>
+                            <td>10,752</td>
+                            <td class="winner">16,384</td>
+                            <td>52% more</td>
+                        </tr>
+                        <tr>
+                            <td>Boost Clock</td>
+                            <td>1.86 GHz</td>
+                            <td class="winner">2.52 GHz</td>
+                            <td>35% higher</td>
+                        </tr>
+                        <tr>
+                            <td>Memory</td>
+                            <td>24GB GDDR6X</td>
+                            <td>24GB GDDR6X</td>
+                            <td>Same capacity</td>
+                        </tr>
+                        <tr>
+                            <td>Memory Bandwidth</td>
+                            <td>1 TB/s</td>
+                            <td class="winner">1.1 TB/s</td>
+                            <td>10% faster</td>
+                        </tr>
+                        <tr>
+                            <td>TDP</td>
+                            <td>450W</td>
+                            <td>450W</td>
+                            <td>Same</td>
+                        </tr>
+                        <tr>
+                            <td>4K Gaming Performance</td>
+                            <td>100% baseline</td>
+                            <td class="winner">160-220%</td>
+                            <td>60-120% faster</td>
+                        </tr>
+                        <tr>
+                            <td>Ray Tracing Performance</td>
+                            <td>100% baseline</td>
+                            <td class="winner">200-300%</td>
+                            <td>2-3x faster</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="review-section">
+        <div class="container">
+            <div class="review-content">
+                <div class="conclusion">
+                    <h2>Verdict: The New Performance King</h2>
+                    <div class="rating">
+                        <i class="fas fa-star rating-star"></i>
+                        <i class="fas fa-star rating-star"></i>
+                        <i class="fas fa-star rating-star"></i>
+                        <i class="fas fa-star rating-star"></i>
+                        <i class="fas fa-star rating-star"></i>
+                    </div>
+                    
+                    <p>The RTX 4090 is an absolute monster of a graphics card that delivers unprecedented performance gains. With DLSS 3 frame generation, it achieves what seemed impossible just a generation ago - smooth 4K gaming with full ray tracing enabled.</p>
+                    
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                            <ul>
+                                <li>Massive performance uplift over previous gen</li>
+                                <li>DLSS 3 is revolutionary for demanding games</li>
+                                <li>Excellent 4K and 8K gaming performance</li>
+                                <li>Surprisingly good thermals and acoustics</li>
+                                <li>Substantial creative workflow improvements</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4><i class="fas fa-exclamation-circle"></i> Cons</h4>
+                            <ul>
+                                <li>Extremely expensive at $1,599</li>
+                                <li>Massive physical size (won't fit in many cases)</li>
+                                <li>Requires high-wattage power supply</li>
+                                <li>Power connector concerns (early adapter issues)</li>
+                                <li>Overkill for anything less than 4K gaming</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Conclusion:</strong> The RTX 4090 is the most powerful consumer graphics card ever created. While its price and power requirements make it suitable only for enthusiasts, it delivers an unparalleled gaming experience that justifies its position at the top of the GPU market. If you demand the absolute best performance and have the budget for it, the RTX 4090 is in a class of its own.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="logo-text">TechPulse</div>
+                    </div>
+                    <p style="margin: 20px 0; color: #94a3b8;">Independent tech reviews and benchmarks for enthusiasts.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">GPU Reviews</a></li>
+                        <li><a href="#">CPU Reviews</a></li>
+                        <li><a href="#">Laptop Reviews</a></li>
+                        <li><a href="#">Peripherals</a></li>
+                        <li><a href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Benchmark Database</a></li>
+                        <li><a href="#">Buying Guides</a></li>
+                        <li><a href="#">How-To Articles</a></li>
+                        <li><a href="Tech News.html">Tech News</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                         <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="Contact Information.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="terms service.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TechPulse. All rights reserved. NVIDIA, GeForce, and RTX are trademarks of NVIDIA Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Animate progress bars on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            // Set initial width to 0
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                // Animate after a short delay
+                setTimeout(() => {
+                    bar.style.transition = 'width 1.5s ease-in-out';
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

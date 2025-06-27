@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | TechPulse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --hardware: #f97316;
+            --software: #0ea5e9;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #93c5fd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            z-index: 101;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background: #0f172a;
+                flex-direction: column;
+                padding: 100px 40px;
+                transition: var(--transition);
+                z-index: 100;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 15px 0;
+                width: 100%;
+            }
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 180px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--primary) 0px, transparent 2px),
+                radial-gradient(circle at 80% 40%, var(--secondary) 0px, transparent 3px),
+                radial-gradient(circle at 30% 70%, var(--hardware) 0px, transparent 4px),
+                radial-gradient(circle at 90% 90%, var(--software) 0px, transparent 3px);
+            background-size: 400px 400px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Privacy Content */
+        .privacy-content {
+            padding: 80px 0;
+        }
+
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            padding: 60px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .policy-section {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .policy-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .policy-section h2 i {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .policy-section p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .policy-section ul {
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .policy-section li {
+            margin-bottom: 12px;
+            color: var(--gray);
+            position: relative;
+        }
+
+        .policy-section li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .policy-section .highlight {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+
+        .policy-update {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .policy-update i {
+            color: var(--success);
+            font-size: 1.5rem;
+        }
+
+        .policy-update p {
+            margin: 0;
+        }
+
+        .privacy-timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .timeline-item .date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-links-footer a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+            .privacy-container {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .privacy-container {
+                padding: 30px 20px;
+            }
+            
+            .privacy-timeline {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechPulse</div>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="software.html">Software</a>
+                    <a href="review.html">Reviews</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact Information.html">Contact</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="tech-grid"></div>
+        <div class="container">
+            <h1 class="fade-in">Privacy Policy</h1>
+            <p class="fade-in">Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.</p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <section class="privacy-content">
+        <div class="container">
+            <div class="privacy-container fade-in">
+                <div class="policy-update fade-in">
+                    <i class="fas fa-info-circle"></i>
+                    <p><strong>Last Updated:</strong> June 15, 2025. This policy applies to all visitors, users, and others who access TechPulse.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-shield-alt"></i> Introduction</h2>
+                    <p>TechPulse ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by TechPulse when you use our website and related services.</p>
+                    <p>By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                    <p>We collect several types of information for various purposes to provide and improve our Service to you:</p>
+                    
+                    <h3 style="margin-top: 25px; margin-bottom: 15px; color: var(--light);">Personal Information</h3>
+                    <p>When you register for an account, subscribe to our newsletter, or contact us, we may collect:</p>
+                    <ul>
+                        <li>Name and contact information (email address)</li>
+                        <li>Demographic information (country, language preference)</li>
+                        <li>Account credentials (username and encrypted password)</li>
+                        <li>Payment information for premium subscriptions</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 25px; margin-bottom: 15px; color: var(--light);">Usage Data</h3>
+                    <p>We automatically collect information when you access our Service:</p>
+                    <ul>
+                        <li>Device information (IP address, browser type, operating system)</li>
+                        <li>Pages visited, time spent, and navigation patterns</li>
+                        <li>Search queries and content interaction</li>
+                        <li>Error logs and performance data</li>
+                    </ul>
+                    
+                    <div class="highlight fade-in">
+                        <p><strong>Note:</strong> We do not knowingly collect sensitive personal information such as racial or ethnic origin, political opinions, religious beliefs, or health information.</p>
+                    </div>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-cogs"></i> How We Use Your Information</h2>
+                    <p>We use the collected information for various purposes:</p>
+                    <ul>
+                        <li>To provide, maintain, and improve our Service</li>
+                        <li>To personalize your experience and content recommendations</li>
+                        <li>To communicate with you (newsletters, updates, responses)</li>
+                        <li>To process transactions and send related information</li>
+                        <li>To monitor and analyze usage patterns and trends</li>
+                        <li>To detect, prevent, and address technical issues</li>
+                        <li>To comply with legal obligations and enforce our terms</li>
+                    </ul>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-cookie-bite"></i> Cookies and Tracking Technologies</h2>
+                    <p>We use cookies and similar tracking technologies to track activity on our Service and store certain information.</p>
+                    
+                    <h3 style="margin-top: 25px; margin-bottom: 15px; color: var(--light);">Types of Cookies</h3>
+                    <ul>
+                        <li><strong>Essential Cookies:</strong> Necessary for basic site functionality</li>
+                        <li><strong>Preference Cookies:</strong> Remember your preferences and settings</li>
+                        <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact</li>
+                        <li><strong>Advertising Cookies:</strong> Deliver relevant ads (we use responsible advertising partners)</li>
+                    </ul>
+                    
+                    <p>You can instruct your browser to refuse all cookies or indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-exchange-alt"></i> Data Sharing and Disclosure</h2>
+                    <p>We may share your information in the following situations:</p>
+                    <ul>
+                        <li><strong>Service Providers:</strong> With third parties who perform services on our behalf (e.g., payment processing, analytics)</li>
+                        <li><strong>Business Transfers:</strong> In connection with any merger or sale of company assets</li>
+                        <li><strong>Legal Requirements:</strong> When required by law or to protect rights and safety</li>
+                        <li><strong>Consent:</strong> With your explicit consent for specific purposes</li>
+                    </ul>
+                    
+                    <p>We require all third parties to respect the security of your personal data and to treat it in accordance with the law.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-lock"></i> Data Security</h2>
+                    <p>We implement appropriate technical and organizational measures to protect your personal information:</p>
+                    <ul>
+                        <li>SSL encryption for data transmission</li>
+                        <li>Secure server infrastructure with firewalls</li>
+                        <li>Regular security audits and vulnerability testing</li>
+                        <li>Access controls and authentication systems</li>
+                        <li>Employee training on data protection</li>
+                    </ul>
+                    
+                    <p>While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security but we continuously work to implement and update security measures.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-user-shield"></i> Your Rights</h2>
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    
+                    <div class="privacy-timeline">
+                        <div class="timeline-item fade-in">
+                            <div class="date"><i class="fas fa-eye"></i> Access</div>
+                            <h4>Right to Access</h4>
+                            <p>Request copies of your personal data</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="date"><i class="fas fa-edit"></i> Correction</div>
+                            <h4>Right to Rectification</h4>
+                            <p>Request correction of inaccurate data</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="date"><i class="fas fa-trash-alt"></i> Deletion</div>
+                            <h4>Right to Erasure</h4>
+                            <p>Request deletion of your personal data</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="date"><i class="fas fa-ban"></i> Restriction</div>
+                            <h4>Right to Restrict</h4>
+                            <p>Request restriction of processing</p>
+                        </div>
+                    </div>
+                    
+                    <p>To exercise these rights, please contact us at privacy@techpulse.com. We may require verification of your identity before processing requests.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13.</p>
+                    <p>If you are a parent or guardian and you are aware that your child has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-sync-alt"></i> Changes to This Policy</h2>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                    <p>We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the "Last Updated" date at the top of this Privacy Policy.</p>
+                    <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+                </div>
+                
+                <div class="policy-section fade-in">
+                    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                    <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                    <ul>
+                        <li>By email: privacy@techpulse.com</li>
+                        <li>By mail: Data Protection Officer, TechPulse Inc., 123 Tech Avenue, San Francisco, CA 94107</li>
+                        <li>Through our website: techpulse.com/contact</li>
+                    </ul>
+                    <p>We aim to respond to all legitimate requests within 30 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col fade-in">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="logo-text">TechPulse</div>
+                    </div>
+                    <p style="margin: 20px 0; color: var(--gray); line-height: 1.7;">Your trusted source for the latest in hardware innovation and software development. Stay informed with expert analysis and reviews.</p>
+                    <div class="social-links-footer">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col fade-in">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="hardware.html"><i class="fas fa-chevron-right"></i> Hardware Reviews</a></li>
+                        <li><a href="software.html"><i class="fas fa-chevron-right"></i> Software Development</a></li>
+                        <li><a href="news.html"><i class="fas fa-chevron-right"></i> Tech News</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Gaming Technology</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Devices</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col fade-in">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="Privacy Policy.html" class="active"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="cookies.html"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright fade-in">
+                <p>&copy; 2025 TechPulse Blog. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        // Mobile menu toggle functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon between bars and times
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on a link (for mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add animation to timeline items on hover
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-5px)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

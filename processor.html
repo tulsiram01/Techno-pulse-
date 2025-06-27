@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processor Comparison: Intel, AMD, and Apple</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --intel-blue: #0071c5;
+            --amd-red: #ed1c24;
+            --apple-gray: #a2aaad;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --hardware: #f97316;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, #2563eb, #8b5cf6);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #2563eb, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #93c5fd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            z-index: 101;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background: #0f172a;
+                flex-direction: column;
+                padding: 100px 40px;
+                transition: var(--transition);
+                z-index: 100;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 15px 0;
+                width: 100%;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #0f172a, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #475569;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Processor Sections */
+        .processor-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .intel-title::after {
+            background: var(--intel-blue);
+        }
+
+        .amd-title::after {
+            background: var(--amd-red);
+        }
+
+        .apple-title::after {
+            background: var(--apple-gray);
+        }
+
+        .processor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .processor-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .processor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .intel-header {
+            background: linear-gradient(135deg, var(--intel-blue), #005a9e);
+        }
+
+        .amd-header {
+            background: linear-gradient(135deg, var(--amd-red), #c41230);
+        }
+
+        .apple-header {
+            background: linear-gradient(135deg, var(--apple-gray), #86888a);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .benchmark {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f1f5f9;
+        }
+
+        .benchmark-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-container {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        .intel-progress {
+            background: var(--intel-blue);
+            width: 92%;
+        }
+
+        .amd-progress {
+            background: var(--amd-red);
+            width: 98%;
+        }
+
+        .apple-progress {
+            background: var(--apple-gray);
+            width: 95%;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 80px 0;
+            background: #f1f5f9;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table .category {
+            font-weight: 600;
+            background: #f1f5f9;
+        }
+
+        .winner {
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #2563eb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .processor-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechPulse</div>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="software.html">Software</a>
+                    <a href="review.html">Reviews</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact Information.html">Contact</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Processor Performance Comparison</h1>
+            <p class="hero-subtitle">Detailed benchmarks and analysis of the latest CPUs from Intel, AMD, and Apple</p>
+        </div>
+    </section>
+
+    <!-- Intel Section -->
+    <section class="processor-section">
+        <div class="container">
+            <h2 class="section-title intel-title">Intel Processors</h2>
+            <div class="processor-grid">
+                <div class="processor-card">
+                    <div class="card-header intel-header">
+                        <div class="card-icon">
+                            <i class="fab fa-intel"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Core i9-14900K</h3>
+                            <p class="card-subtitle">Raptor Lake Refresh</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores/Threads</span>
+                                <span class="spec-value">24 (8P+16E) / 32</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Base Clock</span>
+                                <span class="spec-value">3.2 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Boost Clock</span>
+                                <span class="spec-value">6.0 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">125W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar intel-progress"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>42,580</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Gaming Performance
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar intel-progress" style="width: 95%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>1080p Avg FPS</span>
+                                <span>245</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processor-card">
+                    <div class="card-header intel-header">
+                        <div class="card-icon">
+                            <i class="fab fa-intel"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Core i7-14700K</h3>
+                            <p class="card-subtitle">Raptor Lake Refresh</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores/Threads</span>
+                                <span class="spec-value">20 (8P+12E) / 28</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Base Clock</span>
+                                <span class="spec-value">3.4 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Boost Clock</span>
+                                <span class="spec-value">5.6 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">125W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar intel-progress" style="width: 88%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>38,750</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Gaming Performance
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar intel-progress" style="width: 92%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>1080p Avg FPS</span>
+                                <span>232</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMD Section -->
+    <section class="processor-section">
+        <div class="container">
+            <h2 class="section-title amd-title">AMD Processors</h2>
+            <div class="processor-grid">
+                <div class="processor-card">
+                    <div class="card-header amd-header">
+                        <div class="card-icon">
+                            <i class="fab fa-amd"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Ryzen 9 7950X3D</h3>
+                            <p class="card-subtitle">Zen 4 with 3D V-Cache</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores/Threads</span>
+                                <span class="spec-value">16 / 32</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Base Clock</span>
+                                <span class="spec-value">4.2 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Boost Clock</span>
+                                <span class="spec-value">5.7 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">120W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar amd-progress"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>45,300</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Gaming Performance
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar amd-progress" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>1080p Avg FPS</span>
+                                <span>258</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processor-card">
+                    <div class="card-header amd-header">
+                        <div class="card-icon">
+                            <i class="fab fa-amd"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Ryzen 7 7800X3D</h3>
+                            <p class="card-subtitle">Zen 4 with 3D V-Cache</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores/Threads</span>
+                                <span class="spec-value">8 / 16</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Base Clock</span>
+                                <span class="spec-value">4.2 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Boost Clock</span>
+                                <span class="spec-value">5.0 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">120W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar amd-progress" style="width: 86%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>29,450</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Gaming Performance
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar amd-progress" style="width: 98%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>1080p Avg FPS</span>
+                                <span>253</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apple Section -->
+    <section class="processor-section">
+        <div class="container">
+            <h2 class="section-title apple-title">Apple Silicon</h2>
+            <div class="processor-grid">
+                <div class="processor-card">
+                    <div class="card-header apple-header">
+                        <div class="card-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">M2 Max</h3>
+                            <p class="card-subtitle">Apple Silicon</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores (CPU/GPU)</span>
+                                <span class="spec-value">12 / 38</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">CPU Clock</span>
+                                <span class="spec-value">3.5 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Neural Engine</span>
+                                <span class="spec-value">16-core</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">65W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar apple-progress"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>28,350</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Power Efficiency
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar apple-progress" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Performance per Watt</span>
+                                <span>98%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="processor-card">
+                    <div class="card-header apple-header">
+                        <div class="card-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">M2 Pro</h3>
+                            <p class="card-subtitle">Apple Silicon</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Cores (CPU/GPU)</span>
+                                <span class="spec-value">10 / 16</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">CPU Clock</span>
+                                <span class="spec-value">3.5 GHz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Neural Engine</span>
+                                <span class="spec-value">16-core</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">TDP</span>
+                                <span class="spec-value">45W</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Benchmark
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar apple-progress" style="width: 78%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Cinebench R23</span>
+                                <span>22,100</span>
+                            </div>
+                        </div>
+                        <div class="benchmark">
+                            <h4 class="benchmark-title">
+                                <i class="fas fa-bolt"></i>
+                                Power Efficiency
+                            </h4>
+                            <div class="progress-container">
+                                <div class="progress-bar apple-progress" style="width: 95%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Performance per Watt</span>
+                                <span>93%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Performance Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Intel Core i9-14900K</th>
+                        <th>AMD Ryzen 9 7950X3D</th>
+                        <th>Apple M2 Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="category">Cinebench R23 (Multi)</td>
+                        <td>42,580</td>
+                        <td class="winner">45,300</td>
+                        <td>28,350</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Single-Core Performance</td>
+                        <td class="winner">2,250</td>
+                        <td>2,180</td>
+                        <td>1,920</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Gaming Performance (1080p)</td>
+                        <td>245 FPS</td>
+                        <td class="winner">258 FPS</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Power Consumption (Idle)</td>
+                        <td>35W</td>
+                        <td>28W</td>
+                        <td class="winner">7W</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Power Consumption (Load)</td>
+                        <td>253W</td>
+                        <td>230W</td>
+                        <td class="winner">85W</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Price</td>
+                        <td>$589</td>
+                        <td class="winner">$549</td>
+                        <td>Integrated in Mac</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="logo-text">TechPulse</div>
+                    </div>
+                    <p style="margin: 20px 0; color: #94a3b8;">Your trusted source for processor benchmarks and technology analysis.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Processor Brands</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Intel</a></li>
+                        <li><a href="#">AMD</a></li>
+                        <li><a href="#">Apple Silicon</a></li>
+                        <li><a href="#">Qualcomm</a></li>
+                        <li><a href="#">ARM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Benchmark Tools</a></li>
+                        <li><a href="#">Performance Guides</a></li>
+                        <li><a href="#">CPU Hierarchy</a></li>
+                        <li><a href="Tech News.html">Tech News</a></li>
+                        <li><a href="#">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                         <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="Contact Information.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="terms service.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TechPulse. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon between bars and times
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on a link (for mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Simple animation for the progress bars
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-in-out';
+                    bar.style.width = width;
+                }, 300);
+            });
+            
+            // Add hover effect to processor cards
+            const cards = document.querySelectorAll('.processor-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

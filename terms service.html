@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - TechReview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0f172a;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #93c5fd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #0f172a, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Terms Content */
+        .terms-content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .terms-content h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            color: var(--primary);
+        }
+
+        .terms-content h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 10px;
+            color: var(--dark);
+        }
+
+        .terms-content p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .terms-content ul {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .terms-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .terms-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: 0;
+                width: 300px;
+                height: calc(100vh - 80px);
+                background: #0f172a;
+                flex-direction: column;
+                padding: 40px 20px;
+                transform: translateX(100%);
+                transition: var(--transition);
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 10px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .terms-content {
+                padding: 30px 20px;
+            }
+            
+            .terms-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechReview</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Reviews</a>
+                    <a href="#">Benchmarks</a>
+                    <a href="#">Guides</a>
+                    <a href="#">About</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Terms of Service</h1>
+        </div>
+    </div>
+
+    <!-- Terms Content -->
+    <div class="container">
+        <div class="terms-content">
+            <p class="last-updated">Last Updated: June 20, 2024</p>
+            
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing or using the TechReview website ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
+            
+            <h2>2. Description of Service</h2>
+            <p>TechReview provides independent technology reviews, benchmarks, analysis, and related content. The Service is provided for informational purposes only.</p>
+            
+            <h2>3. User Responsibilities</h2>
+            <p>When using our Service, you agree to:</p>
+            <ul>
+                <li>Use the Service only for lawful purposes</li>
+                <li>Not engage in any activity that interferes with or disrupts the Service</li>
+                <li>Not attempt to gain unauthorized access to any part of the Service</li>
+                <li>Not use the Service to distribute spam or malicious software</li>
+                <li>Comply with all applicable laws and regulations</li>
+            </ul>
+            
+            <h2>4. Intellectual Property</h2>
+            <p>The Service and its original content, features, and functionality are owned by TechReview and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
+            
+            <h3>4.1 License to Use</h3>
+            <p>We grant you a limited, non-exclusive, non-transferable license to access and use the Service for your personal, non-commercial use.</p>
+            
+            <h3>4.2 Restrictions</h3>
+            <p>You may not:</p>
+            <ul>
+                <li>Modify, copy, or create derivative works based on the Service</li>
+                <li>Use our content for commercial purposes without permission</li>
+                <li>Remove any copyright or other proprietary notices from our content</li>
+                <li>Reverse engineer or attempt to extract source code from the Service</li>
+            </ul>
+            
+            <h2>5. User-Generated Content</h2>
+            <p>Users may post comments and other content ("User Content"). You retain all rights to your User Content, but by posting it, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, and display such content.</p>
+            
+            <h3>5.1 Content Standards</h3>
+            <p>User Content must not:</p>
+            <ul>
+                <li>Contain unlawful, abusive, or obscene material</li>
+                <li>Infringe any intellectual property rights</li>
+                <li>Contain viruses or malicious code</li>
+                <li>Promote illegal activities</li>
+                <li>Be misleading or deceptive</li>
+            </ul>
+            
+            <h2>6. Privacy Policy</h2>
+            <p>Your use of the Service is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information.</p>
+            
+            <h2>7. Third-Party Links</h2>
+            <p>The Service may contain links to third-party websites or services that are not owned or controlled by TechReview. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites.</p>
+            
+            <h2>8. Termination</h2>
+            <p>We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+            
+            <h2>9. Disclaimer of Warranties</h2>
+            <p>The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. TechReview does not warrant that:</p>
+            <ul>
+                <li>The Service will be uninterrupted or error-free</li>
+                <li>The results obtained from using the Service will be accurate or reliable</li>
+                <li>The quality of any products, services, information, or other material obtained through the Service will meet your expectations</li>
+            </ul>
+            
+            <h2>10. Limitation of Liability</h2>
+            <p>In no event shall TechReview, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+            <ul>
+                <li>Your access to or use of or inability to access or use the Service</li>
+                <li>Any conduct or content of any third party on the Service</li>
+                <li>Any content obtained from the Service</li>
+                <li>Unauthorized access, use or alteration of your transmissions or content</li>
+            </ul>
+            
+            <h2>11. Indemnification</h2>
+            <p>You agree to defend, indemnify and hold harmless TechReview and its licensee and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of your use of the Service or violation of these Terms.</p>
+            
+            <h2>12. Changes to Terms</h2>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will provide notice of any changes by posting the new Terms on this page and updating the "Last Updated" date.</p>
+            
+            <h2>13. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions.</p>
+            
+            <h2>14. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us at legal@techreview.com.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="logo-text">TechReview</div>
+                    </div>
+                    <p style="margin: 20px 0; color: #94a3b8;">Independent tech reviews and benchmarks for enthusiasts.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR Compliance</a></li>
+                        <li><a href="#">CCPA Notice</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Advertise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 TechReview. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
